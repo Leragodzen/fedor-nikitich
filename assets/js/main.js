@@ -32,11 +32,25 @@
   /* ── пресс на первом экране ── */
   var press = document.querySelector('.press');
   if (press) {
-    if (reduced) {
+    var start = function () {
       press.classList.add('is-set');
+      // страховка: если анимации по какой-то причине не отработали,
+      // показываем логотип как есть — пустая карточка недопустима
+      setTimeout(function () {
+        var word = press.querySelector('.press__word');
+        if (word && getComputedStyle(word).opacity === '0') press.classList.add('is-done');
+      }, 2600);
+    };
+
+    if (reduced) {
+      press.classList.add('is-set', 'is-done');
+    } else if (document.visibilityState === 'visible') {
+      requestAnimationFrame(function () { setTimeout(start, 120); });
     } else {
-      requestAnimationFrame(function () {
-        setTimeout(function () { press.classList.add('is-set'); }, 120);
+      document.addEventListener('visibilitychange', function once() {
+        if (document.visibilityState !== 'visible') return;
+        document.removeEventListener('visibilitychange', once);
+        start();
       });
     }
   }

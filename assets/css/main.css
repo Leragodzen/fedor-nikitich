@@ -424,7 +424,8 @@ a { color: inherit; }
 .dot--off { background: #9A5B4C; }
 
 /* ─────────── анимация пресса ─────────── */
-.press [data-press] { opacity: 0; }
+/* прячем только если JS жив — иначе логотип и текст должны быть видны сразу */
+.js .press [data-press] { opacity: 0; }
 .press.is-set .press__frame { animation: frameIn 0.7s var(--ease) both; }
 .press.is-set .press__pig   { animation: fadeUp 0.6s var(--ease) 0.45s both; }
 .press.is-set .press__est   { animation: fadeUp 0.5s var(--ease) 0.62s both; }
@@ -432,11 +433,16 @@ a { color: inherit; }
 .press.is-set .press__sub   { animation: fadeUp 0.5s var(--ease) 1.05s both; }
 .press.is-set [data-press]  { opacity: 1; }
 
-.press__pig path {
+.js .press__pig path {
   stroke-dasharray: 700;
   stroke-dashoffset: 700;
 }
 .press.is-set .press__pig path { animation: draw 1.1s var(--ease) 0.5s both; }
+
+/* аварийный показ, если анимации не отработали */
+.press.is-done [data-press] { opacity: 1 !important; animation: none !important; }
+.press.is-done .press__frame { clip-path: none !important; animation: none !important; }
+.press.is-done .press__pig path { stroke-dashoffset: 0 !important; animation: none !important; }
 
 @keyframes draw   { to { stroke-dashoffset: 0; } }
 @keyframes frameIn{ from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
@@ -858,12 +864,12 @@ a { color: inherit; }
 }
 
 /* ─────────── появление при скролле ─────────── */
-[data-rise] {
+.js [data-rise] {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
 }
-[data-rise].is-in { opacity: 1; transform: none; }
+.js [data-rise].is-in { opacity: 1; transform: none; }
 
 /* ─────────── адаптив ─────────── */
 @media (max-width: 900px) {
@@ -896,7 +902,7 @@ a { color: inherit; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  [data-rise] { opacity: 1; transform: none; }
-  .press [data-press] { opacity: 1; }
-  .press__pig path, .press__pig circle { stroke-dashoffset: 0; }
+  .js [data-rise] { opacity: 1; transform: none; }
+  .js .press [data-press] { opacity: 1; }
+  .js .press__pig path { stroke-dashoffset: 0; }
 }
