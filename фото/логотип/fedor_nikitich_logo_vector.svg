@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <title>Фёдор Никитич — Кафе · Лавка · Цех</title>
+  <desc>Векторная версия логотипа с кабанчиком, ESTD 2023 и фирменной рамкой.</desc>
+
+  <!-- Background -->
+  <rect width="1200" height="760" fill="#ffffff"/>
+
+  <!-- Outer frame -->
+  <rect x="42" y="42" width="1116" height="676" rx="2"
+        fill="none" stroke="#111111" stroke-width="8"/>
+
+  <!-- Top line: ESTD / pig / 2023 -->
+  <g fill="#111111" font-family="Arial, Helvetica, sans-serif">
+    <text x="388" y="222" font-size="33" font-weight="500" letter-spacing="3">ESTD</text>
+    <text x="812" y="222" font-size="33" font-weight="500" letter-spacing="3">2023</text>
+  </g>
+
+  <!-- Hand-drawn pig / boar mark, fully vector -->
+  <g fill="none" stroke="#111111" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+    <!-- body + neck + head -->
+    <path d="M486 159
+             C500 142 526 132 559 128
+             C596 123 638 127 666 143
+             C686 154 699 169 704 188
+             C708 202 706 218 700 229
+             C716 224 726 212 731 198
+             C736 184 748 184 751 195
+             C754 208 746 226 731 237
+             C719 246 708 249 696 249
+             C688 266 674 279 653 287
+             C631 296 606 299 583 296
+             C562 294 542 287 526 276
+             L515 299
+             L493 298
+             C495 280 497 262 500 245
+             C483 237 468 226 456 214
+             C447 205 443 194 445 183
+             C447 174 454 166 466 162
+             Z"/>
+    <!-- snout -->
+    <path d="M486 159
+             C474 154 462 153 451 158
+             C442 162 435 171 435 182
+             C435 193 441 201 451 206
+             L472 212"/>
+    <path d="M445 183 C451 181 456 184 460 189"/>
+    <!-- ear -->
+    <path d="M515 157
+             C503 145 499 128 506 112
+             C510 103 520 102 526 110
+             L543 132
+             C535 140 529 149 526 160"/>
+    <path d="M535 132
+             C540 119 549 109 559 112
+             C568 115 573 129 574 141"/>
+    <!-- eye -->
+    <circle cx="486" cy="177" r="4" fill="#111111" stroke="none"/>
+    <!-- front leg -->
+    <path d="M526 276 L522 327 L546 327 L552 282"/>
+    <!-- rear/front second leg -->
+    <path d="M570 291 L568 333 L594 333 L598 294"/>
+    <!-- rear legs -->
+    <path d="M641 287 L641 331 L667 331 L669 279"/>
+    <path d="M673 278 L678 324 L703 324 L700 251"/>
+    <!-- tail curl -->
+    <path d="M696 249 C704 250 712 248 720 242"/>
+  </g>
+
+  <!-- Main wordmark -->
+  <g fill="#111111" font-family="Arial Narrow, Helvetica Neue, Arial, sans-serif"
+     font-stretch="condensed" text-anchor="middle">
+    <text x="600" y="420" font-size="96" font-weight="300" letter-spacing="13">
+      ФЁДОР НИКИТИЧ
+    </text>
+  </g>
+
+  <!-- Subline -->
+  <text x="600" y="514" text-anchor="middle"
+        fill="#111111"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="34" font-weight="400" letter-spacing="6">
+    КАФЕ · ЛАВКА · ЦЕХ
+  </text>
+
+  <!-- Subtle registration dots / craft detail -->
+  <g fill="#111111">
+    <circle cx="338" cy="499" r="2.5"/>
+    <circle cx="862" cy="499" r="2.5"/>
+  </g>
+</svg>
