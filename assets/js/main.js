@@ -32,15 +32,15 @@
   /* ── пресс на первом экране ── */
   var press = document.querySelector('.press');
   if (press) {
-    var start = function () {
-      press.classList.add('is-set');
-      // страховка: если анимации по какой-то причине не отработали,
-      // показываем логотип как есть — пустая карточка недопустима
-      setTimeout(function () {
-        var word = press.querySelector('.press__word');
-        if (word && getComputedStyle(word).opacity === '0') press.classList.add('is-done');
-      }, 2600);
-    };
+    var start = function () { press.classList.add('is-set'); };
+
+    // страховка, которая работает всегда: если через 2,6 с логотип всё ещё
+    // не проявился (анимации заморожены, вкладка в фоне, что угодно) —
+    // показываем его как есть. Пустая карточка вместо вывески недопустима.
+    setTimeout(function () {
+      var word = press.querySelector('.press__word');
+      if (word && getComputedStyle(word).opacity === '0') press.classList.add('is-set', 'is-done');
+    }, 2600);
 
     if (reduced) {
       press.classList.add('is-set', 'is-done');
