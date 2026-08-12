@@ -136,6 +136,64 @@
     }
   });
 
+  /* ── горизонтальные ленты: стрелки на десктопе ── */
+  document.querySelectorAll('[data-rail]').forEach(function (rail) {
+    var nav = document.querySelector('[data-rail-nav="' + rail.getAttribute('data-rail') + '"]');
+    if (!nav) return;
+    var prev = nav.querySelector('[data-dir="prev"]');
+    var next = nav.querySelector('[data-dir="next"]');
+
+    var step = function () {
+      var first = rail.firstElementChild;
+      if (!first) return rail.clientWidth;
+      var gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+      return (first.getBoundingClientRect().width + gap) * 3;
+    };
+    var sync = function () {
+      var max = rail.scrollWidth - rail.clientWidth - 2;
+      prev.disabled = rail.scrollLeft <= 2;
+      next.disabled = rail.scrollLeft >= max;
+    };
+    prev.addEventListener('click', function () { rail.scrollBy({ left: -step(), behavior: reduced ? 'auto' : 'smooth' }); });
+    next.addEventListener('click', function () { rail.scrollBy({ left:  step(), behavior: reduced ? 'auto' : 'smooth' }); });
+    rail.addEventListener('scroll', sync, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
+  });
+
+  /* ── просмотр фото блюда ── */
+  var lb = document.querySelector('.lb');
+  if (lb) {
+    var lbImg = lb.querySelector('img');
+    var lbCap = lb.querySelector('.lb__cap');
+
+    document.querySelectorAll('[data-shot]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        lbImg.src = btn.getAttribute('data-shot');
+        lbImg.alt = btn.getAttribute('data-title') || '';
+        lbCap.textContent = btn.getAttribute('data-title') || '';
+        if (typeof lb.showModal === 'function') lb.showModal();
+      });
+    });
+
+    lb.querySelector('.lb__x').addEventListener('click', function () { lb.close(); });
+    lb.addEventListener('click', function (e) {
+      // клик мимо самой фотографии закрывает
+      if (!e.target.closest('.lb__fig')) lb.close();
+    });
+    lb.addEventListener('close', function () { lbImg.removeAttribute('src'); });
+  }
+
+  /* ── плавающая кнопка звонка ── */
+  var fab = document.querySelector('.fab');
+  if (fab) {
+    var toggleFab = function () {
+      fab.classList.toggle('is-on', window.scrollY > window.innerHeight * 0.6);
+    };
+    toggleFab();
+    window.addEventListener('scroll', toggleFab, { passive: true });
+  }
+
   /* ── вкладки меню: подсветка активного раздела ── */
   var tabs = document.querySelectorAll('.tabs a[href^="#"]');
   if (tabs.length && 'IntersectionObserver' in window) {

@@ -286,22 +286,23 @@ a { color: inherit; }
   overflow: hidden;
   background: var(--ink);
 }
-/* кирпичная кладка вперевязку — сгенерирована, не картинка */
+/* Тёплая тёмная плоскость с пятном верхнего света — как лампа над стойкой.
+   Кладка оставлена намёком, на очень низком контрасте: раньше плитка
+   читалась как повторяющийся узор и спорила с карточкой логотипа. */
 .hero__brick {
   position: absolute;
   inset: 0;
-  background-color: #2A1D16;
+  background-color: #221811;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='60'%3E%3Cg fill='none' stroke='%23000' stroke-width='2.4' opacity='0.62'%3E%3Cpath d='M0 30h120M0 0h120M0 60h120'/%3E%3Cpath d='M0 0v30M60 0v30M120 0v30'/%3E%3Cpath d='M30 30v30M90 30v30'/%3E%3C/g%3E%3Cg fill='none' stroke='%23FFE6C8' stroke-width='1' opacity='0.07'%3E%3Cpath d='M0 32h120M0 2h120'/%3E%3C/g%3E%3C/svg%3E"),
-    linear-gradient(168deg, #46301F 0%, #2B1D16 46%, #150F0C 100%);
-  background-size: 168px 84px, 100% 100%;
-  opacity: 0.9;
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='120'%3E%3Cg fill='none' stroke='%23000' stroke-width='2' opacity='0.20'%3E%3Cpath d='M0 60h240M0 0h240M0 120h240'/%3E%3Cpath d='M0 0v60M120 0v60M240 0v60'/%3E%3Cpath d='M60 60v60M180 60v60'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(ellipse 62% 46% at 50% 30%, #4A3524 0%, #2C1E15 44%, #150E0A 100%);
+  background-size: 360px 180px, 100% 100%;
 }
 .hero__brick::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 55% at 50% 42%, transparent 0%, rgba(10,7,5,0.55) 62%, rgba(8,5,4,0.9) 100%);
+  background: radial-gradient(ellipse 66% 52% at 50% 34%, transparent 0%, rgba(10,7,5,0.42) 58%, rgba(6,4,3,0.92) 100%);
 }
 .hero__glow {
   position: absolute;
@@ -710,6 +711,18 @@ a { color: inherit; }
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 .strip figure { margin: 0; position: relative; aspect-ratio: 1; overflow: hidden; background: var(--soot-2); }
+/* на узком экране сетка из квадратов рассыпается — собираем в ленту */
+@media (max-width: 760px) {
+  .strip {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .strip::-webkit-scrollbar { display: none; }
+  .strip figure { flex: 0 0 44%; scroll-snap-align: start; }
+}
 .strip img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9) contrast(1.05); transition: transform 0.9s var(--ease); }
 .strip figure:hover img { transform: scale(1.06); }
 
@@ -872,6 +885,233 @@ a { color: inherit; }
   transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
 }
 .js [data-rise].is-in { opacity: 1; transform: none; }
+
+/* ─────────── горизонтальные ленты ─────────── */
+.rail {
+  --rg: clamp(14px, 2vw, 26px);
+  --cols: 1.12;
+  display: flex;
+  gap: var(--rg);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline-start: 0;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail > * {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: calc((100% - (var(--cols) - 1) * var(--rg)) / var(--cols));
+}
+@media (min-width: 700px)  { .rail { --cols: 2.2; } }
+@media (min-width: 1000px) { .rail { --cols: 3; } .rail--4 { --cols: 4; } }
+
+.rail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: clamp(20px, 2.4vw, 30px);
+}
+.rail-nav { display: none; gap: 8px; }
+@media (min-width: 1000px) { .rail-nav { display: flex; } }
+.rail-nav button {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  padding: 0;
+  border: 1px solid var(--rule-light);
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 15px;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.dark .rail-nav button { border-color: var(--rule-dark); }
+.rail-nav button:hover { border-color: currentColor; color: var(--ochre); }
+.rail-nav button[disabled] { opacity: 0.3; cursor: default; }
+.rail-nav button[disabled]:hover { border-color: var(--rule-light); color: inherit; }
+
+.rail-hint {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 14px 0 0;
+}
+@media (min-width: 1000px) { .rail-hint { display: none; } }
+
+/* ─────────── кнопка «показать фото» у позиции меню ─────────── */
+.shot {
+  display: inline-grid;
+  place-items: center;
+  width: 21px; height: 21px;
+  margin-left: 9px;
+  vertical-align: -4px;
+  padding: 0;
+  border: 1px solid rgba(23, 18, 14, 0.3);
+  border-radius: 50%;
+  background: rgba(23, 18, 14, 0.06);
+  color: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+}
+.shot svg { width: 11px; height: 11px; }
+.shot:hover { border-color: var(--brick); background: var(--brick); color: var(--paper); }
+.dark .shot { border-color: rgba(240, 234, 220, 0.32); background: rgba(240, 234, 220, 0.08); }
+.dark .shot:hover { border-color: var(--ochre); background: var(--ochre); color: var(--ink); }
+
+.shot-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.62;
+  margin: 0 0 22px;
+}
+
+/* ─────────── просмотр фото ─────────── */
+dialog.lb {
+  width: 100%; height: 100%;
+  max-width: none; max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+}
+dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
+.lb__in {
+  width: 100%; height: 100%;
+  display: grid;
+  place-items: center;
+  padding: clamp(20px, 5vw, 56px);
+}
+.lb__fig { margin: 0; display: flex; flex-direction: column; gap: 16px; max-width: min(760px, 100%); }
+.lb__fig img {
+  width: 100%;
+  max-height: 74svh;
+  object-fit: contain;
+  background: var(--soot-2);
+}
+.lb__cap {
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(16px, 2vw, 21px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  text-align: center;
+}
+.lb__x {
+  position: fixed;
+  top: clamp(14px, 2vw, 24px);
+  right: clamp(14px, 2vw, 24px);
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  padding: 0;
+  border: 1px solid var(--rule-dark);
+  background: rgba(23, 18, 14, 0.6);
+  color: var(--paper);
+  font-size: 18px;
+  cursor: pointer;
+}
+.lb__x:hover { border-color: var(--ochre); color: var(--ochre); }
+
+/* ─────────── плавающая кнопка звонка ─────────── */
+.fab {
+  position: fixed;
+  right: clamp(16px, 3vw, 30px);
+  bottom: clamp(16px, 3vw, 30px);
+  z-index: 80;
+  width: 58px; height: 58px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--ochre);
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.75);
+  opacity: 0;
+  transform: translateY(14px) scale(0.92);
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease), background 0.3s var(--ease);
+}
+.fab.is-on { opacity: 1; transform: none; pointer-events: auto; }
+.fab:hover { background: var(--ochre-lt); }
+.fab svg { width: 23px; height: 23px; position: relative; z-index: 1; }
+.fab::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--ochre);
+  animation: ring 2.8s var(--ease) infinite;
+}
+@keyframes ring {
+  0%        { transform: scale(1);    opacity: 0.65; }
+  70%, 100% { transform: scale(1.6);  opacity: 0; }
+}
+
+/* ─────────── что делаем сами: сгруппировано ─────────── */
+.made { display: grid; }
+.made__g {
+  display: grid;
+  gap: 6px 28px;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-dark);
+}
+@media (min-width: 700px) { .made__g { grid-template-columns: 176px 1fr; align-items: baseline; } }
+.made__t {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ochre);
+}
+.made__x {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: clamp(15px, 1.5vw, 18px);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.55;
+}
+
+/* ─────────── интерьер ─────────── */
+.gal { display: grid; gap: 2px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 820px) { .gal { grid-template-columns: repeat(4, 1fr); } }
+.gal figure {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--soot-2);
+}
+@media (min-width: 820px) { .gal figure:first-child { grid-column: span 2; grid-row: span 2; } }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
+.gal figure:hover img { transform: scale(1.05); }
+.gal figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 12px 14px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: linear-gradient(transparent, rgba(8, 5, 4, 0.88));
+}
+
+/* ─────────── карта ─────────── */
+.map { height: clamp(300px, 44vh, 460px); background: var(--paper-2); }
+.map iframe { width: 100%; height: 100%; border: 0; display: block; }
 
 /* ─────────── адаптив ─────────── */
 @media (max-width: 900px) {
