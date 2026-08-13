@@ -59,7 +59,7 @@
         <span><span class="dot"></span> <span data-status-text>Режим работы</span></span>
       </p>
       <div class="hero__acts" style="justify-content:flex-start">
-        <a class="btn btn--solid" href="tel:+79198135806">+7 919 813-58-06</a>
+        <a class="btn btn--solid" href="tel:+79198135806" data-book>+7 919 813-58-06</a>
         <a class="btn" href="https://yandex.ru/maps/org/fyodor_nikitich/160483424619/" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
       </div>
     </div>
@@ -95,8 +95,12 @@
         <div style="margin-top:30px">
           <h3 class="h-s" style="margin-bottom:14px">Кухня</h3>
           <ul class="price">
-            <li class="price__row"><span class="price__name"><span>Завтраки</span></span><span class="price__val">8:00 — 12:00</span></li>
-            <li class="price__row"><span class="price__name"><span>Основное меню</span></span><span class="price__val">с 12:00</span></li>
+            <li class="price__row"><span class="price__name"><span>Завтраки</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val">8:00 — 12:00</span></li>
+            <li class="price__row"><span class="price__name"><span>Основное меню</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val">с 12:00</span></li>
           </ul>
         </div>
       </div>
@@ -105,21 +109,35 @@
         <p class="eyebrow">Связаться</p>
         <h2 class="h-l" style="margin-bottom:28px">Позвонить<br>или написать</h2>
         <ul class="price">
-          <li class="price__row"><span class="price__name"><span>Бронь стола</span></span><span class="price__val"><a href="tel:+79198135806" style="text-decoration:none">+7 919 813-58-06</a></span></li>
-          <li class="price__row"><span class="price__name"><span>Заказ торта</span></span><span class="price__val">по телефону, за сутки</span></li>
-          <li class="price__row"><span class="price__name"><span>Бронь хлеба</span></span><span class="price__val">по телефону</span></li>
-          <li class="price__row"><span class="price__name"><span>Доставка</span></span><span class="price__val"><a href="https://eda.yandex.ru/restaurant/cex63" target="_blank" rel="noopener" style="text-decoration:none">Яндекс Еда</a></span>
+          <li class="price__row"><span class="price__name"><span>Бронь стола</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val"><a href="tel:+79198135806" style="text-decoration:none">+7 919 813-58-06</a></span></li>
+          <li class="price__row"><span class="price__name"><span>Заказ торта</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val">за сутки, по телефону</span></li>
+          <li class="price__row"><span class="price__name"><span>Бронь хлеба</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val">по телефону</span></li>
+          <li class="price__row"><span class="price__name"><span>Доставка</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val"><a href="https://eda.yandex.ru/restaurant/cex63" target="_blank" rel="noopener" style="text-decoration:none">Яндекс Еда</a></span>
             <p class="price__note">В доставке цены выше зальных — там своя комиссия.</p>
           </li>
-          <li class="price__row"><span class="price__name"><span>Самовывоз</span></span><span class="price__val">без наценки</span></li>
+          <li class="price__row"><span class="price__name"><span>Самовывоз</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val">без наценки</span></li>
         </ul>
 
         <h3 class="h-s" style="margin:34px 0 14px">Соцсети</h3>
         <ul class="price">
-          <li class="price__row"><span class="price__name"><span>Telegram</span></span><span class="price__val"><a href="https://t.me/tseh_63" target="_blank" rel="noopener" style="text-decoration:none">@tseh_63</a></span>
+          <li class="price__row"><span class="price__name"><span>Telegram</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val"><a href="https://t.me/tseh_63" target="_blank" rel="noopener" style="text-decoration:none">@tseh_63</a></span>
             <p class="price__note">Каждое утро пишут, что стоит на витрине сегодня.</p>
           </li>
-          <li class="price__row"><span class="price__name"><span>ВКонтакте</span></span><span class="price__val"><a href="https://vk.com/fedor_nikitich" target="_blank" rel="noopener" style="text-decoration:none">fedor_nikitich</a></span></li>
+          <li class="price__row"><span class="price__name"><span>ВКонтакте</span></span>
+            <span class="shot-slot"></span>
+            <span class="price__val"><a href="https://vk.com/fedor_nikitich" target="_blank" rel="noopener" style="text-decoration:none">fedor_nikitich</a></span></li>
         </ul>
       </div>
     </div>
@@ -246,6 +264,21 @@
     </figure>
   </div>
   <button class="lb__x" type="button" aria-label="Закрыть">✕</button>
+</dialog>
+
+
+<dialog class="lb bk" aria-label="Забронировать стол">
+  <div class="lb__in">
+    <div class="bk__card">
+      <span class="mono" style="letter-spacing:.2em;opacity:.6">Бронь стола</span>
+      <a class="bk__tel" href="tel:+79198135806">+7 919 813-58-06</a>
+      <p style="margin:0;font-size:15.5px;line-height:1.55;opacity:.75">Позвоните — скажем, есть ли свободный стол на нужное время. Вечером пятницы и в выходные лучше заранее.</p>
+      <p class="mono muted" data-status style="margin:0"><span class="dot"></span> <span data-status-text></span></p>
+      <a class="btn btn--solid" href="tel:+79198135806" style="width:100%;justify-content:center">Позвонить</a>
+      <a class="arrow" href="https://t.me/tseh_63" target="_blank" rel="noopener">Написать в Telegram <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <button class="bk__x" type="button" aria-label="Закрыть">✕</button>
 </dialog>
 
 <script src="../assets/js/main.js"></script>

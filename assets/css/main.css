@@ -20,6 +20,7 @@
   --f-body:    "Literata", Georgia, serif;
   --f-mono:    "IBM Plex Mono", ui-monospace, monospace;
 
+  --val-w: 124px;
   --gut: clamp(20px, 4vw, 40px);
   --max: 1240px;
   --sec: clamp(72px, 9vw, 132px);
@@ -398,13 +399,14 @@ a { color: inherit; }
   margin: 0;
 }
 
+/* строки заданы разметкой и не переносятся: фраза всегда в две строки,
+   размер подбирается от ширины экрана */
 .hero__claim {
-  font-size: clamp(19px, 2.1vw, 25px);
-  line-height: 1.5;
-  max-width: 34ch;
+  font-size: clamp(15px, 4.3vw, 25px);
+  line-height: 1.45;
   margin: 0;
-  text-wrap: balance;
 }
+.hero__claim span { display: block; white-space: nowrap; }
 .hero__claim em { font-style: normal; color: var(--ochre-lt); }
 
 .hero__acts { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
@@ -522,14 +524,19 @@ a { color: inherit; }
 
 /* ─────────── прайс-лист (сигнатурная типографика) ─────────── */
 .price { list-style: none; margin: 0; padding: 0; }
+/* три колонки: название, постоянное место для значка фото, цена.
+   Значок стоит на одной вертикали во всех строках, даже там, где фото нет. */
 .price__row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  /* колонка цены фиксированной ширины: каждая строка — свой грид,
+     и от «авто» значки съезжали по горизонтали от строки к строке */
+  grid-template-columns: 1fr 22px var(--val-w);
   align-items: baseline;
   gap: 8px 14px;
   padding: 15px 0;
   border-bottom: 1px solid var(--rule-light);
 }
+.shot-slot { display: block; width: 22px; }
 .dark .price__row { border-bottom-color: var(--rule-dark); }
 .price__row:first-child { border-top: 1px solid var(--rule-light); }
 .dark .price__row:first-child { border-top-color: var(--rule-dark); }
@@ -555,19 +562,27 @@ a { color: inherit; }
 }
 .dark .price__name::after { border-bottom-color: rgba(240, 234, 220, 0.30); }
 
+/* цена и вес друг под другом: у напитков вида «250 / 320 ₽ · 200 / 300 мл»
+   в одну строку они наезжали на название */
 .price__val {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
   font-family: var(--f-mono);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.04em;
   white-space: nowrap;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 .price__w {
   font-family: var(--f-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   opacity: 0.5;
-  margin-left: 10px;
+  font-style: normal;
 }
 .price__note {
   grid-column: 1 / -1;
@@ -806,7 +821,9 @@ a { color: inherit; }
 .hours li[data-today] { color: var(--ochre-lt); }
 .paper .hours li[data-today] { color: var(--brick); font-weight: 500; }
 
-.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+/* шесть меток: на телефоне две колонки — ровно три строки вместо четырёх */
+.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+@media (min-width: 700px) { .facts { display: flex; flex-wrap: wrap; } }
 .facts li {
   font-family: var(--f-mono);
   font-size: 10.5px;
@@ -949,23 +966,20 @@ a { color: inherit; }
 
 /* ─────────── кнопка «показать фото» у позиции меню ─────────── */
 .shot {
-  display: inline-grid;
+  display: grid;
   place-items: center;
-  width: 21px; height: 21px;
-  margin-left: 9px;
-  vertical-align: -4px;
+  width: 22px; height: 22px;
   padding: 0;
-  border: 1px solid rgba(23, 18, 14, 0.3);
-  border-radius: 50%;
-  background: rgba(23, 18, 14, 0.06);
+  border: 0;
+  background: none;
   color: inherit;
+  opacity: 0.42;
   cursor: pointer;
-  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+  transition: opacity 0.25s var(--ease), color 0.25s var(--ease);
 }
-.shot svg { width: 11px; height: 11px; }
-.shot:hover { border-color: var(--brick); background: var(--brick); color: var(--paper); }
-.dark .shot { border-color: rgba(240, 234, 220, 0.32); background: rgba(240, 234, 220, 0.08); }
-.dark .shot:hover { border-color: var(--ochre); background: var(--ochre); color: var(--ink); }
+.shot svg { width: 15px; height: 15px; }
+.shot:hover { opacity: 1; color: var(--brick); }
+.dark .shot:hover { color: var(--ochre); }
 
 .shot-note {
   display: flex;
@@ -1026,6 +1040,43 @@ dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
   cursor: pointer;
 }
 .lb__x:hover { border-color: var(--ochre); color: var(--ochre); }
+
+/* ─────────── бронь стола ─────────── */
+.bk__card {
+  width: min(420px, 100%);
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(28px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+  align-items: center;
+}
+.bk__tel {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-size: clamp(24px, 3.4vw, 34px);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.bk__tel:hover { color: var(--brick); }
+.bk__x {
+  position: absolute;
+  top: clamp(14px, 2vw, 24px);
+  right: clamp(14px, 2vw, 24px);
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  padding: 0;
+  border: 1px solid var(--rule-dark);
+  background: rgba(23, 18, 14, 0.6);
+  color: var(--paper);
+  font-size: 18px;
+  cursor: pointer;
+}
+.bk__x:hover { border-color: var(--ochre); color: var(--ochre); }
 
 /* ─────────── плавающая кнопка звонка ───────────
    Живёт поверх любого фона, поэтому светится сама: тёплое ядро,
@@ -1095,25 +1146,23 @@ dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  padding: 16px clamp(20px, 3vw, 32px);
-  border: 1px solid var(--ochre);
-  outline: 1px solid var(--ochre);
-  outline-offset: 4px;
+  gap: 4px;
+  padding: 13px clamp(16px, 2.2vw, 24px);
+  border: 1px solid rgba(214, 160, 72, 0.45);
   color: var(--ochre-lt);
   text-align: center;
 }
-.paper .medal { color: var(--brick); border-color: var(--brick); outline-color: var(--brick); }
-.medal__t { font-family: var(--f-mono); font-size: 9.5px; letter-spacing: 0.24em; text-transform: uppercase; opacity: 0.75; }
+.paper .medal { color: var(--brick); border-color: rgba(124, 69, 49, 0.4); }
+.medal__t { font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.7; }
 .medal__n {
   font-family: var(--f-display);
-  font-weight: 500;
-  font-size: clamp(19px, 2.2vw, 26px);
-  letter-spacing: 0.07em;
+  font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 18px);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1;
 }
-.medal__y { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.3em; }
+.medal__y { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.28em; opacity: 0.7; }
 
 /* ─────────── соцсети ─────────── */
 .socials { display: grid; gap: 2px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
@@ -1171,19 +1220,45 @@ dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
 }
 
 /* ─────────── интерьер ─────────── */
+/* десять кадров: пять в ряд на широком экране, два — на телефоне.
+   И там и там ряды заполняются без пустых клеток. */
 .gal { display: grid; gap: 2px; grid-template-columns: repeat(2, 1fr); }
-@media (min-width: 820px) { .gal { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 760px) { .gal { grid-template-columns: repeat(5, 1fr); } }
 .gal figure {
   margin: 0;
   position: relative;
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--soot-2);
 }
-@media (min-width: 820px) { .gal figure:first-child { grid-column: span 2; grid-row: span 2; } }
 .gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease); }
 .gal figure:hover img { transform: scale(1.05); }
+/* весь кадр — кнопка: открывает фотографию крупно */
+.gal .shot {
+  position: absolute;
+  inset: 0;
+  width: auto; height: auto;
+  opacity: 1;
+  display: block;
+}
+.gal .shot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 18, 14, 0);
+  transition: background 0.35s var(--ease);
+}
+.gal .shot:hover::after { background: rgba(23, 18, 14, 0.16); }
+.gal .shot svg {
+  position: absolute;
+  right: 12px; top: 12px;
+  width: 17px; height: 17px;
+  color: var(--paper);
+  opacity: 0.75;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.7));
+}
 .gal figcaption {
+  pointer-events: none;
   position: absolute;
   left: 0; right: 0; bottom: 0;
   padding: 12px 14px;

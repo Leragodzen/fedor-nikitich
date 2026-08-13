@@ -184,6 +184,25 @@
     lb.addEventListener('close', function () { lbImg.removeAttribute('src'); });
   }
 
+  /* ── бронь стола ──
+     На телефоне ссылка tel: сразу звонит — так быстрее.
+     На компьютере звонить некуда, поэтому показываем номер и Telegram. */
+  var bk = document.querySelector('.bk');
+  if (bk) {
+    var wide = window.matchMedia('(min-width: 900px)');
+    document.querySelectorAll('[data-book]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (!wide.matches) return;            // телефон: звоним напрямую
+        e.preventDefault();
+        if (typeof bk.showModal === 'function') bk.showModal();
+      });
+    });
+    bk.querySelector('.bk__x').addEventListener('click', function () { bk.close(); });
+    bk.addEventListener('click', function (e) {
+      if (!e.target.closest('.bk__card')) bk.close();
+    });
+  }
+
   /* ── плавающая кнопка звонка ── */
   var fab = document.querySelector('.fab');
   if (fab) {
