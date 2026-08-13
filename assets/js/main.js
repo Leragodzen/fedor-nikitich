@@ -213,6 +213,67 @@
     window.addEventListener('scroll', toggleFab, { passive: true });
   }
 
+  /* ── карточка со спецпредложением ──
+     Не по таймеру: окно, закрывающее контент сразу после входа, Google
+     считает навязчивым и понижает страницу на мобильных. Показываем по
+     намерению — когда курсор уходит из окна или человек уже прочитал
+     половину страницы. Раз в 30 дней и никогда тем, кто уже звонил. */
+  var offer = document.querySelector('.offer');
+  if (offer) {
+    var KEY = 'fn-offer-seen';
+    var DONE = 'fn-converted';
+    var MONTH = 30 * 24 * 3600 * 1000;
+
+    var seen = function () {
+      try {
+        if (localStorage.getItem(DONE)) return true;
+        var t = parseInt(localStorage.getItem(KEY), 10);
+        return t && (Date.now() - t) < MONTH;
+      } catch (e) { return true; }
+    };
+    var remember = function (k) {
+      try { localStorage.setItem(k, String(Date.now())); } catch (e) {}
+    };
+
+    // тот, кто уже позвонил или открыл бронь, оффера не увидит
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a[href^="tel:"], [data-book]');
+      if (a) remember(DONE);
+    });
+
+    var shown = false;
+    var show = function () {
+      if (shown || seen() || !offer.showModal) return;
+      shown = true;
+      remember(KEY);
+      offer.showModal();
+    };
+
+    if (!seen()) {
+      if (window.matchMedia('(min-width: 900px)').matches) {
+        document.addEventListener('mouseout', function (e) {
+          if (!e.relatedTarget && e.clientY <= 4) show();
+        });
+        setTimeout(show, 75000);            // страховка для долгого чтения
+      } else {
+        var onScroll2 = function () {
+          var h = document.documentElement;
+          var p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+          if (p > 0.55) { show(); window.removeEventListener('scroll', onScroll2); }
+        };
+        window.addEventListener('scroll', onScroll2, { passive: true });
+        setTimeout(show, 30000);
+      }
+    }
+
+    offer.querySelectorAll('[data-offer-close]').forEach(function (b) {
+      b.addEventListener('click', function () { offer.close(); });
+    });
+    offer.addEventListener('click', function (e) {
+      if (!e.target.closest('.offer__card')) offer.close();
+    });
+  }
+
   /* ── вкладки меню: подсветка активного раздела ── */
   var tabs = document.querySelectorAll('.tabs a[href^="#"]');
   if (tabs.length && 'IntersectionObserver' in window) {
