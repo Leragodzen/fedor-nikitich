@@ -1165,6 +1165,33 @@ dialog.offer::backdrop { background: rgba(9, 6, 4, 0.86); }
 }
 .offer__x:hover { background: var(--brick); border-color: var(--brick); }
 
+/* ─────────── иконки мессенджеров ─────────── */
+.msg { display: flex; gap: 10px; width: 100%; }
+.msg__i {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 72px;
+  padding: 12px 8px;
+  border: 1px solid var(--rule-dark);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease);
+}
+.msg__i svg { width: 24px; height: 24px; }
+.msg__i span {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.msg__i:hover { border-color: var(--ochre); color: var(--ochre); background: rgba(185, 130, 47, 0.08); }
+.msg__i:hover span { opacity: 1; }
+
 /* ─────────── сколько это стоит ─────────── */
 .spend { display: grid; gap: 2px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 .spend__i {
