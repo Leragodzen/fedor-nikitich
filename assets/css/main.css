@@ -7,8 +7,8 @@
   --ink:      #17120E;
   --soot:     #241C16;
   --soot-2:   #2E251D;
-  --paper:    #F0EADC;
-  --paper-2:  #E1D6C0;
+  --paper:    #EFEAE1;
+  --paper-2:  #E2DCD0;
   --ochre:    #B9822F;
   --ochre-lt: #D6A048;
   --brick:    #7C4531;
@@ -345,7 +345,7 @@ a { color: inherit; }
   width: var(--pw);
   container-type: inline-size;
   padding: clamp(24px, 3.4vw, 40px) clamp(18px, 3vw, 34px);
-  background: linear-gradient(168deg, #F5F0E4 0%, #E4DAC4 100%);
+  background: linear-gradient(168deg, #F3EFE7 0%, #E3DBCD 100%);
   color: var(--ink);
   box-shadow:
     0 2px 0 rgba(255,255,255,0.35) inset,
@@ -1094,7 +1094,7 @@ dialog.offer::backdrop { background: rgba(9, 6, 4, 0.86); }
   position: relative;
   width: min(430px, 100%);
   padding: clamp(12px, 2vw, 16px);
-  background: linear-gradient(168deg, #F5F0E4 0%, #E4DAC4 100%);
+  background: linear-gradient(168deg, #F3EFE7 0%, #E3DBCD 100%);
   color: var(--ink);
   box-shadow: 0 30px 70px -24px rgba(0, 0, 0, 0.9);
   animation: offerIn 0.45s var(--ease) both;
@@ -1192,6 +1192,20 @@ dialog.offer::backdrop { background: rgba(9, 6, 4, 0.86); }
 }
 .msg__i:hover { border-color: var(--ochre); color: var(--ochre); background: rgba(185, 130, 47, 0.08); }
 .msg__i:hover span { opacity: 1; }
+
+/* Max — ссылки пока нет, иконка стоит заглушкой */
+.msg__i { position: relative; }
+.msg__i--soon { opacity: 0.42; cursor: default; }
+.msg__i--soon:hover { border-color: var(--rule-dark); color: inherit; background: none; }
+.msg__i--soon::after {
+  content: "скоро";
+  position: absolute;
+  top: 6px; right: 7px;
+  font-family: var(--f-mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
 
 /* ─────────── сколько это стоит ─────────── */
 .spend { display: grid; gap: 2px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
