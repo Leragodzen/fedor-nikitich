@@ -443,19 +443,20 @@ a { color: inherit; }
 .press.is-set .press__sub   { animation: fadeUp 0.5s var(--ease) 1.05s both; }
 .press.is-set [data-press]  { opacity: 1; }
 
-/* 1000 — с запасом: самый длинный контур кабанчика ~887 */
-.js .press__pig path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-}
-.press.is-set .press__pig path { animation: draw 1.1s var(--ease) 0.5s both; }
+/* Знак теперь залитый контур, обведённый с оригинального макета, —
+   вместо прорисовки штрихом он проявляется под валиком слева направо. */
+.js .press__pig { clip-path: inset(0 100% 0 0); }
+.press.is-set .press__pig { animation: roll 0.85s var(--ease) 0.4s both; }
 
 /* аварийный показ, если анимации не отработали */
 .press.is-done [data-press] { opacity: 1 !important; animation: none !important; }
 .press.is-done .press__frame { clip-path: none !important; animation: none !important; }
-.press.is-done .press__pig path { stroke-dashoffset: 0 !important; animation: none !important; }
+.press.is-done .press__pig { clip-path: none !important; animation: none !important; }
 
-@keyframes draw   { to { stroke-dashoffset: 0; } }
+@keyframes roll {
+  from { clip-path: inset(0 100% 0 0); opacity: 1; }
+  to   { clip-path: inset(0 0 0 0);    opacity: 1; }
+}
 @keyframes frameIn{ from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @keyframes stamp  {
@@ -1523,5 +1524,5 @@ dialog.offer::backdrop { background: rgba(9, 6, 4, 0.86); }
   }
   .js [data-rise] { opacity: 1; transform: none; }
   .js .press [data-press] { opacity: 1; }
-  .js .press__pig path { stroke-dashoffset: 0; }
+  .js .press__pig { clip-path: none; }
 }
