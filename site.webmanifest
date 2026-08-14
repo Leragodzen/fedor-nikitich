@@ -2,13 +2,13 @@
   "name": "Фёдор Никитич — кафе, лавка и цех",
   "short_name": "Фёдор Никитич",
   "description": "Кафе, гастрономическая лавка и собственный цех в Тольятти",
-  "start_url": "/",
+  "start_url": "/fedor-nikitich/",
   "display": "standalone",
   "background_color": "#17120E",
   "theme_color": "#17120E",
   "lang": "ru",
   "icons": [
-    { "src": "/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+    { "src": "/fedor-nikitich/assets/img/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/fedor-nikitich/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
   ]
 }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fedornikitich.ru/sitemap.xml
+Sitemap: https://leragodzen.github.io/fedor-nikitich/sitemap.xml
