@@ -241,15 +241,22 @@
       if (a) remember(DONE);
     });
 
+    // адрес с ?offer открывает карточку сразу и ничего не запоминает —
+    // это для показа заказчику, обычный гость такой ссылки не встретит
+    var demo = /[?&]offer(=|&|$)/.test(location.search);
+
     var shown = false;
-    var show = function () {
-      if (shown || seen() || !offer.showModal) return;
+    var show = function (force) {
+      if (shown || !offer.showModal) return;
+      if (!force && seen()) return;
       shown = true;
-      remember(KEY);
+      if (!force) remember(KEY);
       offer.showModal();
     };
 
-    if (!seen()) {
+    if (demo) {
+      show(true);
+    } else if (!seen()) {
       if (window.matchMedia('(min-width: 900px)').matches) {
         document.addEventListener('mouseout', function (e) {
           if (!e.relatedTarget && e.clientY <= 4) show();
