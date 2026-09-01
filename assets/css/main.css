@@ -909,15 +909,18 @@ a { color: inherit; }
 }
 
 /* ─────────── подвал ─────────── */
-.foot { background: var(--ink); color: var(--paper); padding-block: clamp(50px, 6vw, 84px) 34px; }
-.foot__grid { display: grid; gap: clamp(28px, 4vw, 56px); }
+/* подвал держим компактным: он повторяется на каждой странице */
+.foot { background: var(--ink); color: var(--paper); padding-block: clamp(34px, 4vw, 52px) 24px; }
+.foot__grid { display: grid; gap: clamp(20px, 2.6vw, 36px); }
+@media (min-width: 620px) { .foot__grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 800px) { .foot__grid { grid-template-columns: 1.3fr 1fr 1fr; } }
-.foot__col { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.foot__col { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.foot__col a { line-height: 1.45; }
 .foot__col a { text-decoration: none; opacity: 0.75; transition: opacity 0.3s var(--ease); font-size: 15.5px; }
 .foot__col a:hover { opacity: 1; color: var(--ochre-lt); }
 .foot__bottom {
-  margin-top: clamp(34px, 4vw, 54px);
-  padding-top: 22px;
+  margin-top: clamp(22px, 2.6vw, 34px);
+  padding-top: 16px;
   border-top: 1px solid var(--rule-dark);
   display: flex;
   flex-wrap: wrap;
@@ -1039,12 +1042,33 @@ a { color: inherit; }
   line-height: 1.5;
 }
 
-/* ─────────── кабанчик вместо полосы прокрутки ─────────── */
-/* родную полосу убираем — вместо неё знак заведения идёт по тонкой линии */
+
+/* время работы кухни — его ищут глазами, поэтому крупнее и плотнее */
+.eyebrow--time {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  opacity: 1;
+}
+.duo__cap {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 9px;
+  line-height: 1.5;
+}
+/* время раздела в меню: было мелко и приглушённо — стало заметно */
+.mgroup__h .mono.muted { opacity: 1; font-weight: 500; font-size: 12.5px; color: var(--brick); }
+.dark .mgroup__h .mono.muted { color: var(--ochre-lt); }
+
+/* ─────────── круассан вместо полосы прокрутки ─────────── */
+/* родную полосу убираем — вместо неё по тонкой линии едет круассан */
 html { scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
-.pigbar {
+.roll {
   position: fixed;
   right: 10px;
   top: 50%;
@@ -1056,21 +1080,21 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display:
   opacity: 0;
   transition: opacity 0.4s var(--ease);
 }
-.pigbar.is-on { opacity: 1; }
-.pigbar__rail {
+.roll.is-on { opacity: 1; }
+.roll__rail {
   position: absolute;
   left: 50%; top: 0; bottom: 0;
   width: 1px;
   margin-left: -0.5px;
   background: rgba(185, 130, 47, 0.28);
 }
-.pigbar__fill {
+.roll__fill {
   position: absolute;
   left: 0; top: 0;
   width: 100%;
   background: var(--ochre);
 }
-.pigbar__pig {
+.roll__mark {
   position: absolute;
   left: 50%; top: 0;
   width: 30px; height: 20px;
@@ -1078,20 +1102,20 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display:
   color: var(--ochre);
   transition: transform 0.08s linear;
 }
-/* тень нужна: полоса идёт поверх фотографий, без неё знак теряется */
-.pigbar__pig svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 5px rgba(23, 18, 14, 0.75)); }
-.pigbar__rail, .pigbar__fill { box-shadow: 0 0 4px rgba(23, 18, 14, 0.5); }
+/* тень нужна: полоса идёт поверх фотографий, без неё круассан теряется */
+.roll__mark svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 0 5px rgba(23, 18, 14, 0.75)); }
+.roll__rail, .roll__fill { box-shadow: 0 0 4px rgba(23, 18, 14, 0.5); }
 
 /* та же полоса под горизонтальными лентами */
-.pigline { position: relative; height: 22px; margin-top: 10px; }
-.pigline__rail {
+.rollline { position: relative; height: 22px; margin-top: 10px; }
+.rollline__rail {
   position: absolute;
   left: 0; right: 0; top: 50%;
   height: 1px; margin-top: -0.5px;
   background: rgba(185, 130, 47, 0.28);
 }
-.pigline__fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--ochre); }
-.pigline__pig {
+.rollline__fill { position: absolute; left: 0; top: 0; height: 100%; background: var(--ochre); }
+.rollline__mark {
   position: absolute;
   top: 50%; left: 0;
   width: 30px; height: 20px;
@@ -1099,10 +1123,10 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display:
   color: var(--ochre);
   transition: transform 0.08s linear;
 }
-.pigline__pig svg { width: 100%; height: 100%; display: block; }
+.rollline__mark svg { width: 100%; height: 100%; display: block; }
 
-@media (max-width: 620px) { .pigbar { right: 4px; width: 24px; } .pigbar__pig { width: 24px; height: 16px; margin-left: -12px; } }
-@media (prefers-reduced-motion: reduce) { .pigbar__pig, .pigline__pig { transition: none; } }
+@media (max-width: 620px) { .roll { right: 4px; width: 24px; } .roll__mark { width: 24px; height: 16px; margin-left: -12px; } }
+@media (prefers-reduced-motion: reduce) { .roll__mark, .rollline__mark { transition: none; } }
 
 /* ─────────── миниатюра блюда в строке прайса ─────────── */
 /* фотография прямо в меню продаёт лучше значка: видно блюдо, не нажимая */
@@ -1156,6 +1180,35 @@ dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
   padding: clamp(20px, 5vw, 56px);
 }
 .lb__fig { margin: 0; display: flex; flex-direction: column; gap: 16px; max-width: min(760px, 100%); }
+
+/* листание внутри просмотра */
+.lb__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.lb__go {
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  padding: 0;
+  border: 1px solid rgba(240, 234, 220, 0.28);
+  border-radius: 50%;
+  background: none;
+  color: var(--paper);
+  font-size: 16px;
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.lb__go:hover { border-color: var(--ochre); color: var(--ochre-lt); }
+.lb__count {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: rgba(240, 234, 220, 0.55);
+  min-width: 62px;
+  text-align: center;
+}
 .lb__fig img {
   width: 100%;
   max-height: 74svh;

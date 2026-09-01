@@ -161,20 +161,60 @@
     sync();
   });
 
-  /* ── просмотр фото блюда ── */
+  /* ── просмотр фото: открыли одно — листаются все на странице ──
+     Раньше из каждого снимка приходилось выходить и открывать следующий.
+     Теперь фотографии страницы — одна лента: стрелки, клавиши и свайп. */
   var lb = document.querySelector('.lb');
   if (lb) {
     var lbImg = lb.querySelector('img');
     var lbCap = lb.querySelector('.lb__cap');
+    var shots = Array.prototype.slice.call(document.querySelectorAll('[data-shot]'));
+    var at = 0;
 
-    document.querySelectorAll('[data-shot]').forEach(function (btn) {
+    var nav = document.createElement('div');
+    nav.className = 'lb__nav';
+    nav.innerHTML = '<button class="lb__go" type="button" data-go="-1" aria-label="Предыдущее фото">←</button>' +
+                    '<span class="lb__count"></span>' +
+                    '<button class="lb__go" type="button" data-go="1" aria-label="Следующее фото">→</button>';
+    lb.querySelector('.lb__fig').appendChild(nav);
+    var counter = nav.querySelector('.lb__count');
+
+    var showShot = function (i) {
+      at = (i + shots.length) % shots.length;
+      var btn = shots[at];
+      var title = btn.getAttribute('data-title') || '';
+      lbImg.src = btn.getAttribute('data-shot');
+      lbImg.alt = title;
+      lbCap.textContent = title;
+      counter.textContent = (at + 1) + ' / ' + shots.length;
+    };
+
+    shots.forEach(function (btn, i) {
       btn.addEventListener('click', function () {
-        lbImg.src = btn.getAttribute('data-shot');
-        lbImg.alt = btn.getAttribute('data-title') || '';
-        lbCap.textContent = btn.getAttribute('data-title') || '';
+        showShot(i);
         if (typeof lb.showModal === 'function') lb.showModal();
       });
     });
+
+    nav.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-go]');
+      if (b) showShot(at + parseInt(b.getAttribute('data-go'), 10));
+    });
+
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); showShot(at + 1); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); showShot(at - 1); }
+    });
+
+    // свайп на телефоне
+    var x0 = null;
+    lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 45) showShot(at + (dx < 0 ? 1 : -1));
+      x0 = null;
+    }, { passive: true });
 
     lb.querySelector('.lb__x').addEventListener('click', function () { lb.close(); });
     lb.addEventListener('click', function (e) {
@@ -281,48 +321,52 @@
     });
   }
 
-  /* ── кабанчик вместо полосы прокрутки ──
+  /* ── круассан вместо полосы прокрутки ──
      Родная полоса спрятана в стилях. Вместо неё справа идёт тонкая линия:
      сверху она закрашена охрой на пройденную долю страницы, а на границе
-     закраски стоит знак заведения. Тот же приём — под горизонтальными
-     лентами. Знак берём из <symbol id="pig-mark">, он есть на каждой
-     странице, поэтому вывеска и бегунок — буквально одна и та же графика. */
-  var PIG = '<svg viewBox="0 0 240 158.6" aria-hidden="true"><use href="#pig-mark"></use></svg>';
+     закраски едет круассан. Тот же приём — под горизонтальными лентами. */
+  var MARK =
+    '<svg viewBox="0 0 40 28" fill="none" stroke="currentColor" stroke-width="2.1" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M5 7c0 11.5 6 16 15 16s15-4.5 15-16"/>' +
+    '<path d="M5 7c1 6.2 7 9.6 15 9.6S34 13.2 35 7"/>' +
+    '<path d="M13.6 15.4 13 21.4M20 16.6v6.4M26.4 15.4l.6 6"/>' +
+    '</svg>';
 
   var bar = document.createElement('div');
-  bar.className = 'pigbar';
+  bar.className = 'roll';
   bar.setAttribute('aria-hidden', 'true');
-  bar.innerHTML = '<span class="pigbar__rail"><i class="pigbar__fill"></i></span>' +
-                  '<span class="pigbar__pig">' + PIG + '</span>';
+  bar.innerHTML = '<span class="roll__rail"><i class="roll__fill"></i></span>' +
+                  '<span class="roll__mark">' + MARK + '</span>';
   document.body.appendChild(bar);
 
-  var pig = bar.querySelector('.pigbar__pig');
-  var fill = bar.querySelector('.pigbar__fill');
+  var mark = bar.querySelector('.roll__mark');
+  var fill = bar.querySelector('.roll__fill');
 
-  var movePig = function () {
+  var moveMark = function () {
     var all = document.documentElement.scrollHeight - window.innerHeight;
     var part = all > 0 ? Math.min(1, Math.max(0, window.scrollY / all)) : 0;
-    var run = bar.clientHeight - pig.offsetHeight;
-    pig.style.transform = 'translateY(' + (part * run) + 'px)';
-    fill.style.height = (part * run + pig.offsetHeight / 2) + 'px';
+    var run = bar.clientHeight - mark.offsetHeight;
+    mark.style.transform = 'translateY(' + (part * run) + 'px)';
+    fill.style.height = (part * run + mark.offsetHeight / 2) + 'px';
     bar.classList.toggle('is-on', all > 200);
   };
-  movePig();
-  window.addEventListener('scroll', movePig, { passive: true });
-  window.addEventListener('resize', movePig);
+  moveMark();
+  window.addEventListener('scroll', moveMark, { passive: true });
+  window.addEventListener('resize', moveMark);
 
-  /* тот же кабанчик бежит вбок под лентами */
+  /* тот же круассан едет вбок под лентами */
   document.querySelectorAll('[data-rail]').forEach(function (rail) {
     var line = document.createElement('div');
-    line.className = 'pigline';
+    line.className = 'rollline';
     line.setAttribute('aria-hidden', 'true');
-    line.innerHTML = '<span class="pigline__rail"><i class="pigline__fill"></i></span>' +
-                     '<span class="pigline__pig">' + PIG + '</span>';
+    line.innerHTML = '<span class="rollline__rail"><i class="rollline__fill"></i></span>' +
+                     '<span class="rollline__mark">' + MARK + '</span>';
     rail.parentNode.insertBefore(line, rail.nextSibling);
 
-    var p = line.querySelector('.pigline__pig');
-    var f = line.querySelector('.pigline__fill');
-    var runPig = function () {
+    var p = line.querySelector('.rollline__mark');
+    var f = line.querySelector('.rollline__fill');
+    var runMark = function () {
       var all = rail.scrollWidth - rail.clientWidth;
       if (all < 24) { line.style.display = 'none'; return; }
       line.style.display = '';
@@ -331,9 +375,9 @@
       p.style.transform = 'translateX(' + (part * run) + 'px)';
       f.style.width = (part * run + p.offsetWidth / 2) + 'px';
     };
-    runPig();
-    rail.addEventListener('scroll', runPig, { passive: true });
-    window.addEventListener('resize', runPig);
+    runMark();
+    rail.addEventListener('scroll', runMark, { passive: true });
+    window.addEventListener('resize', runMark);
   });
 
   /* ── вкладки меню: подсветка активного раздела ── */
