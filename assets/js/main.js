@@ -281,6 +281,61 @@
     });
   }
 
+  /* ── кабанчик вместо полосы прокрутки ──
+     Родная полоса спрятана в стилях. Вместо неё справа идёт тонкая линия:
+     сверху она закрашена охрой на пройденную долю страницы, а на границе
+     закраски стоит знак заведения. Тот же приём — под горизонтальными
+     лентами. Знак берём из <symbol id="pig-mark">, он есть на каждой
+     странице, поэтому вывеска и бегунок — буквально одна и та же графика. */
+  var PIG = '<svg viewBox="0 0 240 158.6" aria-hidden="true"><use href="#pig-mark"></use></svg>';
+
+  var bar = document.createElement('div');
+  bar.className = 'pigbar';
+  bar.setAttribute('aria-hidden', 'true');
+  bar.innerHTML = '<span class="pigbar__rail"><i class="pigbar__fill"></i></span>' +
+                  '<span class="pigbar__pig">' + PIG + '</span>';
+  document.body.appendChild(bar);
+
+  var pig = bar.querySelector('.pigbar__pig');
+  var fill = bar.querySelector('.pigbar__fill');
+
+  var movePig = function () {
+    var all = document.documentElement.scrollHeight - window.innerHeight;
+    var part = all > 0 ? Math.min(1, Math.max(0, window.scrollY / all)) : 0;
+    var run = bar.clientHeight - pig.offsetHeight;
+    pig.style.transform = 'translateY(' + (part * run) + 'px)';
+    fill.style.height = (part * run + pig.offsetHeight / 2) + 'px';
+    bar.classList.toggle('is-on', all > 200);
+  };
+  movePig();
+  window.addEventListener('scroll', movePig, { passive: true });
+  window.addEventListener('resize', movePig);
+
+  /* тот же кабанчик бежит вбок под лентами */
+  document.querySelectorAll('[data-rail]').forEach(function (rail) {
+    var line = document.createElement('div');
+    line.className = 'pigline';
+    line.setAttribute('aria-hidden', 'true');
+    line.innerHTML = '<span class="pigline__rail"><i class="pigline__fill"></i></span>' +
+                     '<span class="pigline__pig">' + PIG + '</span>';
+    rail.parentNode.insertBefore(line, rail.nextSibling);
+
+    var p = line.querySelector('.pigline__pig');
+    var f = line.querySelector('.pigline__fill');
+    var runPig = function () {
+      var all = rail.scrollWidth - rail.clientWidth;
+      if (all < 24) { line.style.display = 'none'; return; }
+      line.style.display = '';
+      var part = Math.min(1, Math.max(0, rail.scrollLeft / all));
+      var run = line.clientWidth - p.offsetWidth;
+      p.style.transform = 'translateX(' + (part * run) + 'px)';
+      f.style.width = (part * run + p.offsetWidth / 2) + 'px';
+    };
+    runPig();
+    rail.addEventListener('scroll', runPig, { passive: true });
+    window.addEventListener('resize', runPig);
+  });
+
   /* ── вкладки меню: подсветка активного раздела ── */
   var tabs = document.querySelectorAll('.tabs a[href^="#"]');
   if (tabs.length && 'IntersectionObserver' in window) {

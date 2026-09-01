@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Что нужно согласовать — Фёдор Никитич</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F0EADC">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/oswald-500-cyrillic.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../assets/fonts/literata-400-cyrillic.woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+:root{
+  --ink:#17120E; --paper:#F0EADC; --paper-2:#E1D6C0;
+  --ochre:#B9822F; --brick:#7C4531;
+  --rule:rgba(23,18,14,.16);
+  --f-display:"Oswald","Arial Narrow",sans-serif;
+  --f-body:"Literata",Georgia,serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{width:100%;max-width:720px;margin-inline:auto;padding:0 20px}
+
+/* шапка */
+.top{border-bottom:2px solid var(--ink);padding:28px 0 22px;margin-bottom:34px}
+.top__kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brick);margin:0 0 10px}
+h1{font-family:var(--f-display);font-weight:500;letter-spacing:.02em;
+  font-size:clamp(30px,7vw,44px);line-height:1.05;margin:0 0 14px;text-transform:uppercase}
+.top p{margin:0 0 10px;max-width:56ch}
+.top p:last-child{margin-bottom:0}
+
+/* памятка сверху */
+.howto{background:var(--ink);color:var(--paper);padding:18px 20px;margin:24px 0 0}
+.howto b{font-family:var(--f-display);font-weight:500;letter-spacing:.03em;
+  text-transform:uppercase;font-size:14px;display:block;margin-bottom:6px;color:#D6A048}
+.howto p{margin:0;font-size:15.5px;line-height:1.55}
+
+/* блоки */
+.block{margin:44px 0 0;padding-top:20px;border-top:1px solid var(--rule)}
+.block__n{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--brick);margin:0 0 6px}
+h2{font-family:var(--f-display);font-weight:500;letter-spacing:.03em;
+  font-size:clamp(20px,4.6vw,26px);line-height:1.15;margin:0 0 6px;text-transform:uppercase}
+.block__note{margin:0 0 4px;font-size:15px;color:rgba(23,18,14,.68)}
+
+/* пункт */
+.q{display:grid;grid-template-columns:38px 1fr;gap:0 12px;
+  padding:18px 0;border-bottom:1px solid var(--rule)}
+.q__n{font-family:var(--f-mono);font-size:15px;font-weight:500;
+  padding-top:2px;color:var(--brick)}
+.q__b{min-width:0}
+.q__t{font-family:var(--f-display);font-weight:400;font-size:19px;line-height:1.25;
+  margin:0 0 6px;letter-spacing:.01em}
+.q__t .must{display:inline-block;vertical-align:.12em;width:8px;height:8px;
+  border-radius:50%;background:var(--brick);margin-right:7px}
+.q p{margin:0 0 6px;font-size:16px}
+.q p:last-child{margin-bottom:0}
+.now{font-family:var(--f-mono);font-size:13.5px;line-height:1.5;
+  background:var(--paper-2);border-left:3px solid var(--ochre);
+  padding:9px 12px;margin:8px 0 8px}
+.now i{font-style:normal;display:block;text-transform:uppercase;letter-spacing:.12em;
+  font-size:10px;color:var(--brick);margin-bottom:3px}
+.ask{font-weight:600}
+
+/* легенда */
+.legend{font-size:14.5px;color:rgba(23,18,14,.7);margin:14px 0 0;
+  display:flex;align-items:center;gap:8px}
+.legend span{width:8px;height:8px;border-radius:50%;background:var(--brick);flex:none}
+
+/* фото-список */
+.shot{padding:16px 0;border-bottom:1px solid var(--rule)}
+.shot__t{font-family:var(--f-display);font-size:18px;font-weight:400;margin:0 0 4px}
+.shot__t em{font-style:normal;font-family:var(--f-mono);font-size:12px;
+  color:var(--brick);letter-spacing:.08em;margin-left:8px}
+.shot p{margin:0;font-size:16px}
+.rules{background:var(--paper-2);padding:18px 20px;margin:22px 0 0}
+.rules h3{font-family:var(--f-display);font-weight:500;text-transform:uppercase;
+  letter-spacing:.04em;font-size:15px;margin:0 0 10px}
+.rules ul{margin:0;padding-left:18px}
+.rules li{margin-bottom:6px;font-size:15.5px}
+.rules li:last-child{margin-bottom:0}
+
+/* итог */
+.end{margin:44px 0 0;padding:24px 0 0;border-top:2px solid var(--ink)}
+.end h2{margin-bottom:10px}
+.end ul{margin:0 0 18px;padding-left:18px}
+.end li{margin-bottom:5px}
+.sign{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--brick);padding:24px 0 40px}
+
+@media (min-width:600px){
+  body{font-size:18px}
+  .q{grid-template-columns:46px 1fr}
+}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .howto{background:#fff;color:#000;border:1.5px solid #000}
+  .howto b{color:#000}
+  .q,.shot{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <p class="top__kicker">Фёдор Никитич · кафе · лавка · цех</p>
+    <h1>Что осталось<br>согласовать</h1>
+    <p>Никита, сайт собран, дизайн вы видели. Всю информацию я собрала сама — из вашего печатного меню, канала, соцсетей и Яндекс Карт. Где-то я могла додумать или ошибиться, и такие места лучше поправить до запуска.</p>
+    <p>Ниже — всё, что осталось. Разбито по темам, каждый пункт с номером.</p>
+
+    <div class="howto">
+      <b>Как отвечать</b>
+      <p>Голосовым или просто номерами: «1 — да, 2 — 2024, 7 — 48 мест». Что не важно — пропускайте. Если совсем нет времени, ответьте только на пункты с точкой: их семь, без них сайт не запустить.</p>
+    </div>
+
+    <p class="legend"><span></span> — нужно для запуска</p>
+  </header>
+
+  <!-- 1 -->
+  <section class="block">
+    <p class="block__n">Часть 1 из 5</p>
+    <h2>Про вас и заведение</h2>
+    <p class="block__note">Здесь я больше всего могла напутать — это то, что написано на сайте от вашего лица.</p>
+
+    <div class="q">
+      <div class="q__n">1</div>
+      <div class="q__b">
+        <p class="q__t">Имя — вопрос снят, спасибо</p>
+        <p class="now"><i>Теперь на сайте</i>Рядом с вашим портретом стоит фотография сына с закваской и подпись «Тот самый Фёдор Никитич. Уже в фартуке».</p>
+        <p class="ask">Если подпись хочется другую — скажите, поменяю за минуту.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">2</div>
+      <div class="q__b">
+        <p class="q__t"><span class="must"></span>С какого года считаемся</p>
+        <p class="now"><i>Сейчас расходится</i>В логотипе — ESTD 2023. В подвале сайта — «с 2023 года». А история начинается с ноября 2024, зал открылся в 2025.</p>
+        <p class="ask">Какой год ставим как год основания? Приведу всё к одному.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">3</div>
+      <div class="q__b">
+        <p class="q__t">История по годам</p>
+        <p class="now"><i>Сейчас на странице «Цех»</i>Ноябрь 2024 — только круассаны, развозили горячими по кофейням.<br>Декабрь 2024 — созрела закваска, появились сосиски и лосось.<br>2025 — открылся зал на Юбилейной.<br>Декабрь 2025 — сменили имя.<br>2026 — рейтинг 5,0 и «Хорошее место».</p>
+        <p class="ask">Даты верные? Чего не хватает?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">4</div>
+      <div class="q__b">
+        <p class="q__t">Команда</p>
+        <p class="now"><i>Сейчас на сайте</i>«Кондитерский цех — отдельный шеф-кондитер».</p>
+        <p class="ask">Такой человек есть? Как зовут — и можно ли называть по имени? Сколько всего людей в команде? В отзывах хвалят Дмитрия и Викторию.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">5</div>
+      <div class="q__b">
+        <p class="q__t">Сыры и фермеры</p>
+        <p class="now"><i>Сейчас на сайте</i>«С сыров всё и началось. Первым продуктом лавки стал качокавалло стодневной выдержки из фермерского хозяйства под Самарой».</p>
+        <p class="ask">Так и было? И можно ли называть хозяйства по имени: «сыр от фермы такой-то» продаётся заметно дороже, чем просто «фермерский сыр».</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">6</div>
+      <div class="q__b">
+        <p class="q__t">Хамон</p>
+        <p class="now"><i>Сейчас на сайте</i>«Выдержка четырнадцать месяцев. Нарежем при вас».</p>
+        <p class="ask">Выдержка ваша или закупаете готовую ногу? Если ваша — это отдельный сильный блок, распишу подробнее.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">7</div>
+      <div class="q__b">
+        <p class="q__t">Зал и веранда</p>
+        <p class="now"><i>Сейчас на сайте</i>«Зал небольшой, всего около пятидесяти мест».</p>
+        <p class="ask">Сколько мест на самом деле? И по веранде: сколько мест, с какого по какой месяц работает?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">8</div>
+      <div class="q__b">
+        <p class="q__t">Мелочи, которые я написала сама</p>
+        <p class="now"><i>Сейчас на сайте</i>На стенах старые фотографии Тольятти · в углу играет советская радиола · пускаем со всеми питомцами, не только с собаками · своя парковка перед фасадом, есть места для людей с инвалидностью · вход и зал доступны на коляске · Wi-Fi · оплата картой.</p>
+        <p class="ask">Всё так? Если что-то не наше — вычеркну, это одна минута.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="block">
+    <p class="block__n">Часть 2 из 5</p>
+    <h2>Меню и цены</h2>
+    <p class="block__note">Сверила сайт с двумя листами, которые вы прислали. Ниже — только то, что осталось.</p>
+
+    <div class="q">
+      <div class="q__n">9</div>
+      <div class="q__b">
+        <p class="q__t">Что я уже поправила по вашим листам</p>
+        <p class="now"><i>Изменения на сайте</i>Борщ — 720 ₽ / 480 г, был «по запросу».<br>Добавила окрошку на квасе — 600 ₽ / 350 г.<br>Убрала питы: их нет в новом меню.<br>Убрала огуречный лимонад — его тоже нет.<br>Остальные позиции совпали до рубля.</p>
+        <p class="ask">Всё верно? Если пита вернётся в меню — скажите, поставлю обратно.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">10</div>
+      <div class="q__b">
+        <p class="q__t">Раф — одна цифра расходится</p>
+        <p class="now"><i>Листы спорят</i>На завтраках раф 340 ₽, на дневном — 370 ₽, объём в обоих 300 мл. Сейчас на сайте 340 ₽.</p>
+        <p class="ask">Какая правильная?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">11</div>
+      <div class="q__b">
+        <p class="q__t">Окрошка — до какого месяца</p>
+        <p class="ask">Скажите, когда снимаете, — уберу в тот же день, чтобы гость не ехал зря.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">12</div>
+      <div class="q__b">
+        <p class="q__t">Хлеб — этих цен нет в печатном меню</p>
+        <p class="now"><i>Сейчас на сайте</i>Багет «Пулиш» 200 ₽ · Бородинский 250 ₽ · Деревенский 300 ₽ · Тартин 350 ₽ / 700 г</p>
+        <p class="ask">Я собрала их из вашего канала. Актуальны?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">13</div>
+      <div class="q__b">
+        <p class="q__t"><span class="must"></span>Две последние позиции без цены</p>
+        <p class="now"><i>Сейчас на сайте</i>Вино — по запросу · Целый торт — по весу</p>
+        <p class="ask">По вину хватит строки «бокал от … ₽», по торту — цены за килограмм. Без цифры человек не звонит, а уходит.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">14</div>
+      <div class="q__b">
+        <p class="q__t">Пиво</p>
+        <p class="ask">Келлербир 200 / 300 ₽ стоит постоянно? «ЦЕХовое» и «Советское» писать?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">15</div>
+      <div class="q__b">
+        <p class="q__t">Пельмени</p>
+        <p class="ask">670 и 800 ₽ за килограмм — только навынос или в зале тоже?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">16</div>
+      <div class="q__b">
+        <p class="q__t">Сезонное и стоп-лист</p>
+        <p class="ask">Икра, куличи, киш, пироги «по наличию» — держать круглый год или включать к сезону? И как показывать то, чего сегодня нет: убирать строку или помечать?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">17</div>
+      <div class="q__b">
+        <p class="q__t">Яндекс Еда</p>
+        <p class="ask">Цены там выше зальных на 100–300 ₽, а заведение до сих пор называется ЦЕХ63. Ссылку оставляем? Название меняете?</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 3 -->
+  <section class="block">
+    <p class="block__n">Часть 3 из 5</p>
+    <h2>Как гость будет к вам обращаться</h2>
+
+    <div class="q">
+      <div class="q__n">18</div>
+      <div class="q__b">
+        <p class="q__t"><span class="must"></span>Куда писать гостю</p>
+        <p>Кнопки «написать в мессенджер» сейчас ведут на канал <b>@tseh_63</b>, а в канал написать нельзя — сообщение просто некуда отправить.</p>
+        <p class="ask">Дайте личный аккаунт, рабочий номер в WhatsApp или заведём бота — тогда всё будет падать в одно место.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">19</div>
+      <div class="q__b">
+        <p class="q__t"><span class="must"></span>Бронь стола</p>
+        <p>Сейчас на сайте только кнопка «позвонить». Могу сделать форму: гость выбирает дату, время и число человек, заявка приходит вам в телеграм. Работает и ночью, когда вы трубку не берёте.</p>
+        <p class="ask">Делаем форму или оставляем звонок?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">20</div>
+      <div class="q__b">
+        <p class="q__t"><span class="must"></span>Предложение для новых гостей</p>
+        <p class="now"><i>Сейчас на сайте</i>Всплывает плашка: «Гостю, который у нас впервые — круассан к кофе за наш счёт. Будни до 12:00, один круассан на гостя».</p>
+        <p class="ask">Это я поставила для примера. Оставляем как есть, меняем на вашу акцию или убираем совсем? Такие вещи хорошо приводят на первое посещение, но условия должны быть ваши.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">21</div>
+      <div class="q__b">
+        <p class="q__t">Детское меню</p>
+        <p>В отзывах спрашивают. Есть, планируется или нет? Для семейного кафе это сильный аргумент, а пока в ответах на сайте написано, что отдельного детского меню нет.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">22</div>
+      <div class="q__b">
+        <p class="q__t">Банкеты и дни рождения</p>
+        <p>Принимаете? Если да — сделаю отдельный блок: до скольких человек, нужен ли депозит, за сколько бронировать. Это отдельные деньги и отдельные заявки.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">23</div>
+      <div class="q__b">
+        <p class="q__t">Квартирники и события</p>
+        <p>Проходят регулярно? Если да — добавлю афишу, если раз в полгода — просто упомяну.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="block">
+    <p class="block__n">Часть 4 из 5</p>
+    <h2>Фотографии</h2>
+    <p class="block__note">Ваши снимки уже на сайте: портрет за работой, команда, брискет из смокера, круассан в разрезе, тесто, каменная печь, пиццы, греческий салат, трюфели, нарезка. Серых заглушек на сайте больше нет. Осталось четыре съёмки — их закрыть нечем.</p>
+
+    <div class="shot">
+      <p class="shot__t">1. Сыры и витрина <em>самое нужное</em></p>
+      <p>Из семи сыров нет ни одного кадра, а это самый дорогой раздел лавки. Хватит общего плана витрины и четырёх крупных: качокавалло, шевр, белпер, канестрато.</p>
+    </div>
+
+    <div class="shot">
+      <p class="shot__t">2. Мясная нарезка на доске</p>
+      <p>Без фото остались рёбра, кнуты, утка, су-вид, салями, говяжья колбаса, пастрами, говядина с/к. Нарезкой на доске, а не в упаковке: сейчас у сосисок кадр в вакуумном пакете, у лосося — в гастроёмкости.</p>
+    </div>
+
+    <div class="shot">
+      <p class="shot__t">3. Вечер: фасад, зал, веранда</p>
+      <p>Фасад со светящейся вывеской, зал с гостями, веранда. Сейчас все кадры зала дневные и пустые. Вечерний фасад — лучший кадр для первого экрана, там пока графика.</p>
+    </div>
+
+    <div class="shot">
+      <p class="shot__t">4. Напитки — хватит четырёх кадров</p>
+      <p>Капучино на столе, морс и лимонад на просвет, авторский чай в большом чайнике, кофе навынос. Сейчас в напитках нет ни одной фотографии.</p>
+    </div>
+
+    <div class="shot">
+      <p class="shot__t">5. Если получится — короткое видео</p>
+      <p>Пять-семь секунд: дым из смокера, слоение теста, нож входит в хамон. Поставлю на первый экран.</p>
+    </div>
+
+    <div class="rules">
+      <h3>Как снимать и присылать</h3>
+      <ul>
+        <li>То, что вы прислали, — ровно то, что нужно. Дальше в том же духе.</li>
+        <li>Дневной свет от окна, сбоку. Без верхних ламп и вспышки.</li>
+        <li>Один фон для всех блюд — деревянный стол или стойка.</li>
+        <li>Тарелка с красным ободком уже узнаваемая, держим её.</li>
+        <li>Крупный план с разрезом важнее всего: слои, мякиш, срез.</li>
+        <li><b>Присылать файлами</b>, а не картинкой в чат — иначе телеграм сожмёт.</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- 5 -->
+  <section class="block">
+    <p class="block__n">Часть 5 из 5</p>
+    <h2>Техническое</h2>
+    <p class="block__note">Короткие пункты, всё остальное беру на себя.</p>
+
+    <div class="q">
+      <div class="q__n">24</div>
+      <div class="q__b">
+        <p class="q__t">Домен</p>
+        <p>Сейчас сайт живёт на технической ссылке. Подберу два-три варианта имени и пришлю. Оформляем на вас или на меня?</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">25</div>
+      <div class="q__b">
+        <p class="q__t">Реквизиты</p>
+        <p>ИП или ООО, ИНН, юридическое название. Нужны для подвала и для политики конфиденциальности — она обязательна, если делаем форму брони.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">26</div>
+      <div class="q__b">
+        <p class="q__t">Статистика и соцсети</p>
+        <p>Яндекс.Метрику ставлю новую или у вас есть своя? И указывать ли инстаграм: формально он заблокирован, но аудитория там у вас самая большая.</p>
+      </div>
+    </div>
+
+    <div class="q">
+      <div class="q__n">27</div>
+      <div class="q__b">
+        <p class="q__t">Логотип в векторе</p>
+        <p>Если у дизайнера остался файл SVG, AI или EPS — пришлите. Сейчас знак обведён с картинки: издалека не видно, но на большом экране разница есть.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <h2>Что дальше</h2>
+    <ul>
+      <li>Вы отвечаете — я правлю тексты и цены за день.</li>
+      <li>Присылаете фото — ставлю на места, где сейчас заглушки.</li>
+      <li>Делаем форму брони и подключаем домен.</li>
+      <li>После запуска можно сделать QR-код на меню: гость в зале наводит камеру и смотрит блюда с фотографиями. Это удобнее описаний и хорошо работает на средний чек.</li>
+    </ul>
+    <p>Если по какому-то пункту проще показать на месте — я подъеду.</p>
+    <p class="sign">Валерия · сайт «Фёдор Никитич»</p>
+  </section>
+
+</div>
+</body>
+</html>
