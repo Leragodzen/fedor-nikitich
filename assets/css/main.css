@@ -918,9 +918,17 @@ a { color: inherit; }
 .foot__col a { line-height: 1.45; }
 .foot__col a { text-decoration: none; opacity: 0.75; transition: opacity 0.3s var(--ease); font-size: 15.5px; }
 .foot__col a:hover { opacity: 1; color: var(--ochre-lt); }
+.foot__legal {
+  margin: clamp(20px, 2.4vw, 30px) 0 0;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  opacity: 0.45;
+}
 .foot__bottom {
-  margin-top: clamp(22px, 2.6vw, 34px);
-  padding-top: 16px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid var(--rule-dark);
   display: flex;
   flex-wrap: wrap;
