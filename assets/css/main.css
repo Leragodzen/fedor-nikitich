@@ -1194,7 +1194,7 @@ dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
+  gap: 26px;
 }
 .lb__go {
   width: 46px; height: 46px;
@@ -1209,14 +1209,6 @@ dialog.lb::backdrop { background: rgba(9, 6, 4, 0.92); }
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 .lb__go:hover { border-color: var(--ochre); color: var(--ochre-lt); }
-.lb__count {
-  font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: rgba(240, 234, 220, 0.55);
-  min-width: 62px;
-  text-align: center;
-}
 .lb__fig img {
   width: 100%;
   max-height: 74svh;

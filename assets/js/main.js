@@ -174,10 +174,8 @@
     var nav = document.createElement('div');
     nav.className = 'lb__nav';
     nav.innerHTML = '<button class="lb__go" type="button" data-go="-1" aria-label="Предыдущее фото">←</button>' +
-                    '<span class="lb__count"></span>' +
                     '<button class="lb__go" type="button" data-go="1" aria-label="Следующее фото">→</button>';
     lb.querySelector('.lb__fig').appendChild(nav);
-    var counter = nav.querySelector('.lb__count');
 
     var showShot = function (i) {
       at = (i + shots.length) % shots.length;
@@ -186,7 +184,6 @@
       lbImg.src = btn.getAttribute('data-shot');
       lbImg.alt = title;
       lbCap.textContent = title;
-      counter.textContent = (at + 1) + ' / ' + shots.length;
     };
 
     shots.forEach(function (btn, i) {
