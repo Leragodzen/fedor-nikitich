@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /soglasovanie/
 
-Sitemap: https://leragodzen.github.io/fedor-nikitich/sitemap.xml
+Sitemap: https://fedornikitich.ru/sitemap.xml
