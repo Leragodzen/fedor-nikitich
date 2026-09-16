@@ -93,7 +93,14 @@ ul.links.sub b{min-width:130px;font-size:13.5px}
 ul.links.sub li:first-child{border-top:0}
 .sign{margin-top:44px;padding-top:22px;border-top:1px solid var(--rule);color:var(--soft);font-size:14.5px}
 @media print{
-  body{background:#fff;color:#000}
+  /* печать всегда светлая, даже если в системе включена тёмная тема */
+  :root{
+    --ground:#fff; --panel:#FBF7EE; --ink:#17120E; --soft:#5C5044;
+    --ochre:#8A5E18; --brick:#7C4531;
+    --rule:rgba(23,18,14,.18); --edge:rgba(124,69,49,.25);
+  }
+  body{background:#fff;color:var(--ink)}
+  ol.steps li::before{background:var(--brick);color:#fff}
   .card{break-inside:avoid}
   h2{break-after:avoid}
 }
