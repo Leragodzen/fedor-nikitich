@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайт «Фёдор Никитич» — передача</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Literata:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F0EADC;
+  --panel:#FBF7EE;
+  --ink:#17120E;
+  --soft:#6B5C4C;
+  --ochre:#8A5E18;
+  --brick:#7C4531;
+  --rule:rgba(23,18,14,.12);
+  --edge:rgba(124,69,49,.20);
+  --display:"Oswald","Arial Narrow",sans-serif;
+  --body:"Literata",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#17120E; --panel:#241C16; --ink:#F0EADC; --soft:#AC9C88;
+    --ochre:#D6A048; --brick:#C98B6F;
+    --rule:rgba(240,234,220,.14); --edge:rgba(214,160,72,.26);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#17120E; --panel:#241C16; --ink:#F0EADC; --soft:#AC9C88;
+  --ochre:#D6A048; --brick:#C98B6F;
+  --rule:rgba(240,234,220,.14); --edge:rgba(214,160,72,.26);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--body);font-size:16px;line-height:1.68;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:clamp(26px,6vw,58px) clamp(18px,5vw,30px) clamp(50px,9vw,86px)}
+
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brick);margin:0 0 12px}
+h1{font-family:var(--display);font-weight:500;letter-spacing:.01em;margin:0 0 10px;
+  font-size:clamp(30px,6.4vw,46px);line-height:1.08;text-transform:uppercase;text-wrap:balance}
+.sub{color:var(--soft);font-size:clamp(16px,2.5vw,19px);margin:0}
+h2{font-family:var(--display);font-weight:500;letter-spacing:.02em;text-transform:uppercase;
+  font-size:clamp(19px,3.1vw,24px);line-height:1.2;margin:46px 0 14px;text-wrap:balance}
+h3{font-family:var(--body);font-size:16px;font-weight:600;margin:24px 0 6px}
+p{margin:0 0 14px}
+p.note{color:var(--soft);font-size:14.5px}
+a{color:var(--ochre);text-underline-offset:3px;text-decoration-thickness:1px}
+b,strong{font-weight:600}
+hr.rule{border:0;border-top:1px solid var(--rule);margin:40px 0 0}
+
+ul.links{display:flex;flex-direction:column;margin:0;padding:0;list-style:none}
+ul.links li{display:flex;flex-wrap:wrap;gap:2px 16px;padding:13px 0;border-bottom:1px solid var(--rule)}
+ul.links li:first-child{border-top:1px solid var(--rule)}
+ul.links b{font-weight:600;min-width:210px;font-family:var(--mono);font-size:14px}
+ul.links span{color:var(--soft);font-size:14.5px}
+
+ul.plain{margin:0;padding:0;list-style:none}
+ul.plain li{padding:10px 0 10px 22px;position:relative;border-bottom:1px solid var(--rule);font-size:15.5px}
+ul.plain li:last-child{border-bottom:0}
+ul.plain li::before{content:"—";position:absolute;left:0;color:var(--brick)}
+
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:step}
+ol.steps li{counter-increment:step;position:relative;padding:0 0 16px 42px}
+ol.steps li:last-child{padding-bottom:0}
+ol.steps li::before{content:counter(step);position:absolute;left:0;top:2px;
+  width:27px;height:27px;border-radius:50%;background:var(--brick);color:#F0EADC;
+  font-family:var(--mono);font-size:13px;font-weight:500;line-height:27px;text-align:center}
+ol.steps li span{display:block;color:var(--soft);font-size:14.5px;margin-top:2px}
+
+.card{background:var(--panel);border:1px solid var(--edge);border-radius:12px;
+  padding:clamp(17px,4vw,24px);margin:18px 0 0}
+.card p:last-child{margin-bottom:0}
+.card h3:first-child{margin-top:0}
+
+table.spec{width:100%;border-collapse:collapse;font-size:15px;margin:14px 0 0}
+table.spec th,table.spec td{text-align:left;padding:11px 12px 11px 0;border-bottom:1px solid var(--rule)}
+table.spec th{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--soft);font-weight:400}
+table.spec td:last-child{text-align:right;font-family:var(--mono);font-size:14px;white-space:nowrap}
+
+.sign{margin-top:44px;padding-top:22px;border-top:1px solid var(--rule);color:var(--soft);font-size:14.5px}
+@media print{
+  body{background:#fff;color:#000}
+  .card{break-inside:avoid}
+  h2{break-after:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Кафе · лавка · цех «Фёдор Никитич» · Тольятти</p>
+  <h1>Сайт готов<br>и работает</h1>
+  <p class="sub">Собран, наполнен, подключён к собственному адресу. Ниже — что где лежит, что сделано и что делать дальше.</p>
+</header>
+
+<h2>Где что находится</h2>
+<ul class="links">
+  <li><b>fedornikitich.ru</b><span>главная страница сайта</span></li>
+  <li><b>fedornikitich.ru/menu/</b><span>меню с фотографиями блюд</span></li>
+  <li><b>fedornikitich.ru/lavka/</b><span>витрина лавки: мясо, сыры, хлеб, торты</span></li>
+  <li><b>fedornikitich.ru/tseh/</b><span>история, производство, как всё делается</span></li>
+  <li><b>fedornikitich.ru/contacts/</b><span>адрес, часы, как доехать, ответы на вопросы</span></li>
+  <li><b>fedornikitich.ru/privacy/</b><span>политика конфиденциальности</span></li>
+  <li><b>metrika.yandex.ru</b><span>статистика посещаемости, счётчик № 112660209</span></li>
+  <li><b>reg.ru</b><span>домен, аккаунт baza_tlt@mail.ru</span></li>
+</ul>
+<p class="note">Сайт открывается и с телефона, и с компьютера. Адрес работает с www и без, соединение защищённое — в браузере показывается замочек.</p>
+
+<h2>Что сделано</h2>
+<ul class="plain">
+  <li>Пять страниц сайта: главная, меню, лавка, цех, контакты. Плюс страница политики конфиденциальности и страница «не найдено»</li>
+  <li>Меню переписано полностью по вашим актуальным листам: цены, граммовки, состав разделов</li>
+  <li>Найдены, обработаны и расставлены все фотографии — блюда, выпечка, производство, интерьер, команда</li>
+  <li>У каждой позиции меню — миниатюра блюда. По нажатию снимок открывается крупно, дальше можно листать не выходя</li>
+  <li>Собраны отзывы гостей и сгруппированы по темам: цена и порции, с ребёнком, скорость, завтраки, мясо</li>
+  <li>Написаны тексты: история заведения по годам, разделы производства, описания блюд и продуктов лавки</li>
+  <li>Витрина «за чем сюда приходят» — девять позиций, закрывающих весь день: от завтрака до десерта</li>
+  <li>Разметка для поисковиков: заведение, меню с ценами, отзывы, рейтинг, часы работы, адрес, координаты. Яндекс и Google понимают, что это кафе в Тольятти, и показывают карточку в выдаче</li>
+  <li>Карта сайта и файл для поисковых роботов</li>
+  <li>Подключён собственный домен: настроены записи, выпущен сертификат, включено защищённое соединение</li>
+  <li>Подключена Яндекс Метрика с вебвизором и картой скроллинга</li>
+  <li>Написана политика конфиденциальности — она обязательна, раз на сайте работает счётчик</li>
+  <li>Разработан дизайн наклейки на стол с QR-кодом на меню, код изготовлен и проверен на читаемость</li>
+  <li>Вёрстка под телефон: сайт собирался с расчётом на то, что большинство гостей откроет его с экрана в руке</li>
+</ul>
+
+<h2>Как смотреть статистику</h2>
+<p>Счётчик показывает, сколько людей заходит на сайт, откуда приходят и какие страницы смотрят. Это же ответ на вопрос, окупается ли наклейка на столах.</p>
+<ol class="steps">
+  <li>Откройте <b>metrika.yandex.ru</b> и войдите под своим Яндекс-аккаунтом
+    <span>Доступ вам выдаётся отдельно — напишите, если ещё не пришёл</span></li>
+  <li>Выберите счётчик «Фёдор Никитич»
+    <span>Номер 112660209</span></li>
+  <li>Раздел <b>«Сводка»</b> — главное на одном экране
+    <span>Сколько человек за сегодня, за неделю, за месяц. С телефона или с компьютера</span></li>
+  <li>Раздел <b>«Источники»</b> — откуда пришли
+    <span>Из поиска, из соцсетей, по прямой ссылке. Заходы с наклейки видны как прямые</span></li>
+  <li>Раздел <b>«Содержание»</b> — какие страницы смотрят
+    <span>Если меню читают дольше всего — значит работает</span></li>
+  <li>Раздел <b>«Вебвизор»</b> — запись действий гостя
+    <span>Видно, докрутил ли человек до нужного блока и где закрыл страницу. Данные обезличенные, кто это был — неизвестно</span></li>
+</ol>
+<div class="card">
+  <p class="note">Первые дни цифры будут маленькими: поисковикам нужно время, чтобы найти новый адрес. Обычно сайт начинает появляться в выдаче через две–четыре недели.</p>
+</div>
+
+<h2>Как добавить сайт в Яндекс Карты</h2>
+<p>Сейчас в вашей карточке на Картах сайт не указан. Гость, который нашёл вас в навигаторе, не видит меню — а это самый частый способ, которым вас находят.</p>
+<ol class="steps">
+  <li>Откройте <b>yandex.ru/sprav</b> и войдите под аккаунтом, на который зарегистрирована организация
+    <span>Это Яндекс Бизнес — кабинет владельца карточки</span></li>
+  <li>Выберите организацию «Фёдор Никитич»</li>
+  <li>Раздел <b>«Основное»</b> → поле <b>«Сайт»</b></li>
+  <li>Впишите <b>fedornikitich.ru</b> и сохраните
+    <span>Без http и без www — Яндекс подставит сам</span></li>
+  <li>Дождитесь проверки
+    <span>Обычно от нескольких часов до трёх дней. После этого в карточке появится кликабельная ссылка «Сайт»</span></li>
+</ol>
+<p class="note">Заодно там же стоит проверить часы работы и телефон — они должны совпадать с сайтом, иначе Яндекс понижает карточку в выдаче.</p>
+
+<h2>Наклейка с QR на стол</h2>
+<p>Гость наводит камеру — открывается меню с фотографиями. Не нужно ждать официанта, чтобы просто посмотреть, что у вас есть.</p>
+<h3>Что сказать в типографии</h3>
+<table class="spec">
+  <tr><th>Размер наклейки</th><td>60 × 104 мм</td></tr>
+  <tr><th>Размер кода</th><td>22 мм</td></tr>
+  <tr><th>Печать</th><td>матовая</td></tr>
+  <tr><th>Ламинация</th><td>только матовая</td></tr>
+  <tr><th>Масштабирование</th><td>не масштабировать</td></tr>
+</table>
+<div class="card">
+  <h3>Три вещи, которые ломают код</h3>
+  <p><b>Глянец.</b> Блик от лампы камера принимает за часть изображения и код не читает. Только матовая печать и матовая ламинация.</p>
+  <p><b>Автоулучшение в типографии.</b> Их фильтры повышения резкости замыливают мелкие квадраты. Скажите прямо: печатать как есть.</p>
+  <p><b>Уменьшение.</b> Меньше 55 мм по ширине код падает под 20 мм, и телефоны постарше начинают промахиваться.</p>
+</div>
+<p class="note" style="margin-top:16px">Сначала напечатайте 3–5 пробных. Наклейте на стол, проверьте телефоном вечером при лампах и днём — и только потом заказывайте тираж. Клеить лучше в угол стола: в центре наклейка мешает посуде и затирается за месяц.</p>
+
+<h2>Что нужно оплачивать</h2>
+<table class="spec">
+  <tr><th>Домен fedornikitich.ru</th><td>до 15 сентября 2027</td></tr>
+  <tr><th>Размещение сайта</th><td>бесплатно</td></tr>
+  <tr><th>Защищённое соединение</th><td>бесплатно, продлевается само</td></tr>
+  <tr><th>Яндекс Метрика</th><td>бесплатно</td></tr>
+</table>
+<p class="note">Единственный платёж — домен, раз в год. В reg.ru включено автопродление, но письмо о списании лучше не пропускать: если домен не оплатить, сайт перестанет открываться.</p>
+<div class="card">
+  <p><b>Важно на ближайшие дни.</b> Домен помечен как непроверенный — reg.ru пришлёт письмо с просьбой подтвердить данные владельца. Если его пропустить, домен снимут с обслуживания и сайт перестанет открываться. Это делается один раз.</p>
+</div>
+
+<h2>Что стоит поправить на вашей стороне</h2>
+<p>Ваш телеграм-канал до сих пор называется прежним именем — ЦЕХ63. Гость, который перешёл с сайта, видит другое название и не понимает, туда ли попал.</p>
+<p>Стоит переименовать канал в «Фёдор Никитич» и, если получится, поменять адрес со <b>tseh_63</b> на что-то узнаваемое. Само название меняется в настройках канала за минуту, старые ссылки при этом продолжают работать.</p>
+
+<h2>Гарантия</h2>
+<p>На сайт действует <b>гарантия один год</b>. В неё входят небольшие правки: заменить фотографию, поправить цену, изменить текст, добавить или убрать позицию в меню.</p>
+<p>В ближайший месяц я доделаю то, что осталось за рамками первой сдачи:</p>
+<ul class="plain">
+  <li>Фотографии сыров, напитков и мясной витрины — как только они появятся</li>
+  <li>Вечерний кадр фасада или зала для первого экрана</li>
+  <li>Составы блюд — если вы допишете их в меню, я выведу их на сайте под каждой позицией</li>
+  <li>Мелкие правки по текстам и ценам, которые всплывут после запуска</li>
+</ul>
+<p class="note">Присылайте всё одним списком, когда накопится — так быстрее, чем по одной правке.</p>
+
+<h2>Если что-то поехало</h2>
+<p>Напишите мне — разберусь. Сайт лежит на надёжной площадке и сам по себе сломаться не может, но если вдруг страница не открывается или пропала картинка, это чинится быстро.</p>
+
+<p class="sign">Валерия Леванова · сайт передан 16 сентября 2026 года</p>
+
+</div>
+</body>
+</html>
